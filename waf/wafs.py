@@ -82,9 +82,9 @@ class Wafs(Stack):
                     sampled_requests_enabled=True
                 ),
                 statement=wafv2.CfnWebACL.StatementProperty(
-                    rate_based_statement = wafv2.CfnWebACL.RateBasedStatementProperty(
-                    limit              = 1000,
-                    aggregate_key_type = "IP"
+                    rate_based_statement=wafv2.CfnWebACL.RateBasedStatementProperty(
+                    limit=1000,
+                    aggregate_key_type="IP"
                     ) 
                 )                   
             ),
@@ -145,11 +145,10 @@ class Wafs(Stack):
             )
         ] 
         
-
         # Define waf
         waf = wafv2.CfnWebACL(self, 'waf',
             scope='REGIONAL', # set to 'CLOUDFRONT' if using the waf for cloudfront
-            description=f'example waf',
+            description='example waf',
             name='example-waf',
             # This default actions allows traffic if no rules were matched
             default_action=wafv2.CfnWebACL.DefaultActionProperty(
@@ -172,7 +171,7 @@ class Wafs(Stack):
         # Output waf arn
         CfnOutput(self, 'waf_arn', 
             value=waf.attr_arn, 
-            export_name=f'example-waf-arn'
+            export_name='example-waf-arn'
         )
         
         
